@@ -27,13 +27,13 @@ def set_way_point():
         
       
         while not rospy.is_shutdown():
-              if (turtlePose != None) :
+              if (turtlePose is not None) :
                     #calcule l'angle de la droite passant par la tortue et le waypoint
                     angle_desire = math.atan2(waypoint.y-turtlePose.y, waypoint.x-turtlePose.x)
 
 
                     #calcule l'erreur en cap
-                    e=math.atan2(math.tan((angle_desire-turtlePose.theta)/2))
+                    e=math.atan(math.tan((angle_desire-turtlePose.theta)/2))
 
 
                     #Calcule u : la commande en cap
@@ -49,6 +49,7 @@ def set_way_point():
 
 #prend la position de la tortue en temps réel
 def getPose(pose):
+        global turtlePose
         turtlePose=pose
 
 if __name__=="__main__":
